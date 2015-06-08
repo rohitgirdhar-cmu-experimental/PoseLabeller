@@ -1,4 +1,5 @@
 function main(imgsdir, imgslistfpath, outdir)
+addpath('src/');
 if ~exist('imgsdir', 'var')
     imgsdir = '/media/data-nix/work/cmu/datasets/0001_BackpagePose/Images/corpus/';
 end

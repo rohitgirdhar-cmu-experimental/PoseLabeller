@@ -21,6 +21,6 @@ for imid = imgslist(:)'
     impath = fullfile(imgsdir, imid{:});
     I = imread(impath);
     labels = getLabels(I);
-    save(outfpath, labels);
+    save(outfpath, 'labels');
     fprintf('Done for %d / %d (%s)\n', i, numel(imgslist), impath);
 end

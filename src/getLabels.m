@@ -25,6 +25,7 @@ while part_id <= numel(parts)
         fprintf('Redo-ing...\n');
     elseif p == 'c'
         fprintf('Continuing...\n');
+        labels(:, part_id) = [x; y; vis];
         part_id = part_id + 1;
     end
 end

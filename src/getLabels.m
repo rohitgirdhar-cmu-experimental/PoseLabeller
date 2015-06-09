@@ -14,7 +14,9 @@ part_id = 1;
 while part_id <= numel(parts)
     fprintf('Mark out %s\n', parts{part_id});
     [x, y, button] = ginput(1);
-    vis = (button == 1); % = 1 when left mouse was pressed 
+    vis = ~(button == 1); % = 0 when left mouse was pressed 
+                          % LEEDS uses the convention that last row
+                          % = 0 means that the part is visible
     fprintf('Read (%f, %f, %d) for %s\n', x, y, vis, parts{part_id});
     fprintf('Now, (r)edo? (c)ontinue?\n');
     while (waitforbuttonpress == 0)

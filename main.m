@@ -13,14 +13,23 @@ end
 imgslist = readList(imgslistfpath);
 i = 0;
 for imid = imgslist(:)'
+    clear labels bbox;
     i = i + 1;
     outfpath = fullfile(outdir, [num2str(i) '.mat']);
     if exist(outfpath, 'file')
-        continue;
+        load(outfpath);
+        if exist('labels', 'var') && exist('bbox', 'var')
+            continue;
+        end
     end
     impath = fullfile(imgsdir, imid{:});
     I = imread(impath);
-    labels = getLabels(I);
-    save(outfpath, 'labels');
+    if ~exist('labels', 'var')
+        labels = getLabels(I);
+    end
+    if ~exist('bbox', 'var')
+        bbox = getBbox(I);
+    end
+    save(outfpath, 'labels', 'bbox');
     fprintf('Done for %d / %d (%s)\n', i, numel(imgslist), impath);
 end
